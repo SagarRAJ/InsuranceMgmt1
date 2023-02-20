@@ -1,0 +1,59 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" namespace="/" extends="struts-default">
+ 
+        
+        <action name="Login" class="com.exavalu.models.User" method="doLogin">
+            <result name="SUCCESS">landingPage.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+         <action name="Presignup" class="com.exavalu.models.User" method="doPresignup">
+            <result name="SUCCESS">signup.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+        <action name="Signup" class="com.exavalu.models.User" method="doSignup">
+            <result name="SUCCESS">login.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+        
+        
+        <action name="Logout" class="com.exavalu.models.User" method="doLogout">
+            <result name="SUCCESS">logout.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+         <action name="Prefnol" class="com.exavalu.models.User" method="doPrefnol">
+            <result name="SUCCESS">fnol.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+        <action name="Fnol" class="com.exavalu.models.Fnol" method="doLogfnol">
+            <result name="SUCCESS">landingPage.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+        <action name="Previousclaim" class="com.exavalu.models.Fnol" method="doShowpreviousclaim">
+            <result name="SUCCESS">viewpreviousclaim.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+         <action name="Viewlogedfnol" class="com.exavalu.models.User" method="doViewlogedfnol">
+            <result name="SUCCESS">viewfnol.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+         <action name="Viewlogedfnolofficer" class="com.exavalu.models.User" method="doViewlogedfnolinsuranceofficer">
+            <result name="SUCCESS">viewfnolofficer.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+        <action name="Verify" class="com.exavalu.models.Fnol" method="doVerifyfnol">
+            <result name="SUCCESS">viewfnol.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+        <action name="Verifyio" class="com.exavalu.models.Fnol" method="doVerifyfnolio">
+            <result name="SUCCESS">viewfnolofficer.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+     
+     
+     </package>
+</struts>
