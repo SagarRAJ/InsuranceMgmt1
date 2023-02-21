@@ -138,11 +138,10 @@ public class Fnol extends ActionSupport implements ApplicationAware, SessionAwar
 
     }
 
-    public String doVerifyfnol() throws Exception {
+    public String doAcceptfnol() throws Exception {
         String result = "FAILURE";
-        Policy policy = PolicyService.doFetchPolicy();
-        Dmv dmv = DmvService.doFetchDmv();
-        boolean verify = VerifyService.doVerifyByUnderTaker(policy, dmv, this);
+
+        boolean verify = VerifyService.doAcceptByUnderTaker(this);
         if (verify == true) {
             result = "SUCCESS";
         }
@@ -150,11 +149,32 @@ public class Fnol extends ActionSupport implements ApplicationAware, SessionAwar
         return result;
     }
 
-    public String doVerifyfnolio() throws Exception {
+    public String doRejectfnol() throws Exception {
         String result = "FAILURE";
-        Policy policy = PolicyService.doFetchPolicy();
-        Dmv dmv = DmvService.doFetchDmv();
-        boolean verify = VerifyService.doVerifyByInsuranceOfficer(policy, dmv, this);
+
+        boolean verify = VerifyService.doRejectByUnderTaker(this);
+        if (verify == true) {
+            result = "SUCCESS";
+        }
+
+        return result;
+    }
+
+    public String doAcceptfnolio() throws Exception {
+        String result = "FAILURE";
+
+        boolean verify = VerifyService.doAcceptByInsuranceOfficer(this);
+        if (verify == true) {
+            result = "SUCCESS";
+        }
+
+        return result;
+    }
+
+    public String doRejectfnolio() throws Exception {
+        String result = "FAILURE";
+
+        boolean verify = VerifyService.doRejectByInsuranceOfficer(this);
         if (verify == true) {
             result = "SUCCESS";
         }

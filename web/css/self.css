@@ -1,0 +1,20 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 21-Feb-2023, 6:04:40 pm
+    Author     : Win10
+*/
+.scrollable-table-container {
+        height: 250px; /* Set the height of the container */
+        overflow-y: auto; /* Enable vertical scrollbar */
+    }
+   
+    .result{
+        background-color: #f1f1f1; 
+        padding: 20px; 
+        border-radius: 10px;
+        float: left;
+        width: 50%;
+    }

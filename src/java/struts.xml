@@ -45,11 +45,20 @@
             <result name="SUCCESS">viewfnolofficer.jsp</result>
             <result name="FAILURE">login.jsp</result>
         </action>
-        <action name="Verify" class="com.exavalu.models.Fnol" method="doVerifyfnol">
+        <action name="Acceptunderwriter" class="com.exavalu.models.Fnol" method="doAcceptfnol">
             <result name="SUCCESS">viewfnol.jsp</result>
             <result name="FAILURE">login.jsp</result>
         </action>
-        <action name="Verifyio" class="com.exavalu.models.Fnol" method="doVerifyfnolio">
+        <action name="Rejectunderwriter" class="com.exavalu.models.Fnol" method="doRejectfnol">
+            <result name="SUCCESS">viewfnol.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+        <action name="Acceptio" class="com.exavalu.models.Fnol" method="doAcceptfnolio">
+            <result name="SUCCESS">viewfnolofficer.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+        
+        <action name="Rejectio" class="com.exavalu.models.Fnol" method="doRejectfnolio">
             <result name="SUCCESS">viewfnolofficer.jsp</result>
             <result name="FAILURE">login.jsp</result>
         </action>

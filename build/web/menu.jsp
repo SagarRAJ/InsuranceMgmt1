@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>Employee Management</title>
+        <title>Insurance Management</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <meta name="theme-color" content="#712cf9">
 

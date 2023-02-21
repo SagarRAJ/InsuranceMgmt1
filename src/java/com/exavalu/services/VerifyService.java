@@ -19,181 +19,184 @@ import java.sql.Timestamp;
  */
 public class VerifyService {
 
-    public static boolean doVerifyByUnderTaker(Policy policy, Dmv dmv, Fnol fnol) {
+    public static boolean doAcceptByUnderTaker(Fnol fnol) {
 
         boolean result = false;
-        if ((policy.getPolicyNumber()).equals(fnol.getPolicyNumber()) && (dmv.getVehicleNumber()).equals(fnol.getVehicleNumber())) {
-            int row = 0;
-            Connection con = JDBCConnectionManager.getConnection();
-            String sql = "UPDATE insurance.fnol\n"
-                    + "SET\n"
-                    + "emailAddress = ? ,\n"
-                    + "policyNumber = ? ,\n"
-                    + "description = ? ,\n"
-                    + "vehicleNumber = ? ,\n"
-                    + "claimNumber = ? ,\n"
-                    + "approvalUnderWriterStatus = ?,\n"
-                    + "approvalInsuranceOfficerStatus = ? \n"
-                    + "WHERE claimNumber = ?;";
 
-            try {
-                PreparedStatement preparedStatement = con.prepareStatement(sql);
+        int row = 0;
+        Connection con = JDBCConnectionManager.getConnection();
+        String sql = "UPDATE insurance.fnol\n"
+                + "SET\n"
+                + "emailAddress = ? ,\n"
+                + "policyNumber = ? ,\n"
+                + "description = ? ,\n"
+                + "vehicleNumber = ? ,\n"
+                + "claimNumber = ? ,\n"
+                + "approvalUnderWriterStatus = ?,\n"
+                + "approvalInsuranceOfficerStatus = ? \n"
+                + "WHERE claimNumber = ?;";
 
-                preparedStatement.setString(1, fnol.getEmailAddress());
-                preparedStatement.setString(2, fnol.getPolicyNumber());
-                preparedStatement.setString(3, fnol.getDescription());
-                preparedStatement.setString(4, fnol.getVehicleNumber());
-                preparedStatement.setString(5, fnol.getClaimNumber());
-                preparedStatement.setString(6, "1");
-                preparedStatement.setString(7, "0");
-                preparedStatement.setString(8, fnol.getClaimNumber());
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
 
-                System.out.println("SQL = " + preparedStatement);
-                row = preparedStatement.executeUpdate();
+            preparedStatement.setString(1, fnol.getEmailAddress());
+            preparedStatement.setString(2, fnol.getPolicyNumber());
+            preparedStatement.setString(3, fnol.getDescription());
+            preparedStatement.setString(4, fnol.getVehicleNumber());
+            preparedStatement.setString(5, fnol.getClaimNumber());
+            preparedStatement.setString(6, "1");
+            preparedStatement.setString(7, "0");
+            preparedStatement.setString(8, fnol.getClaimNumber());
 
-            } catch (SQLException ex) {
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            System.out.println("SQL = " + preparedStatement);
+            row = preparedStatement.executeUpdate();
 
-                // Construct the error message with date and time
-                String errorMessage = timestamp.toString() + ": " + ex.getMessage();
+        } catch (SQLException ex) {
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-            }
+            // Construct the error message with date and time
+            String errorMessage = timestamp.toString() + ": " + ex.getMessage();
 
-            if (row == 1) {
-                result = true;
-            }
+        }
 
-        } else {
-            int row = 0;
-            Connection con = JDBCConnectionManager.getConnection();
-            String sql = "UPDATE insurance.fnol\n"
-                    + "SET\n"
-                    + "emailAddress = ? ,\n"
-                    + "policyNumber = ? ,\n"
-                    + "description = ? ,\n"
-                    + "vehicleNumber = ? ,\n"
-                    + "claimNumber = ? ,\n"
-                    + "approvalUnderWriterStatus = ?,\n"
-                    + "approvalInsuranceOfficerStatus = ? \n"
-                    + "WHERE claimNumber = ?;";
-
-            try {
-                PreparedStatement preparedStatement = con.prepareStatement(sql);
-
-                preparedStatement.setString(1, fnol.getEmailAddress());
-                preparedStatement.setString(2, fnol.getPolicyNumber());
-                preparedStatement.setString(3, fnol.getDescription());
-                preparedStatement.setString(4, fnol.getVehicleNumber());
-                preparedStatement.setString(5, fnol.getClaimNumber());
-                preparedStatement.setString(6, "2");
-                preparedStatement.setString(7, "0");
-                preparedStatement.setString(8, fnol.getClaimNumber());
-
-                System.out.println("SQL = " + preparedStatement);
-                row = preparedStatement.executeUpdate();
-
-            } catch (SQLException ex) {
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
-                // Construct the error message with date and time
-                String errorMessage = timestamp.toString() + ": " + ex.getMessage();
-
-            }
-
-            if (row == 1) {
-                result = true;
-            }
-
+        if (row == 1) {
+            result = true;
         }
 
         return result;
 
     }
 
-    public static boolean doVerifyByInsuranceOfficer(Policy policy, Dmv dmv, Fnol fnol) {
+    public static boolean doAcceptByInsuranceOfficer(Fnol fnol) {
         boolean result = false;
-        if ((policy.getPolicyNumber()).equals(fnol.getPolicyNumber()) && (dmv.getVehicleNumber()).equals(fnol.getVehicleNumber())) {
-            int row = 0;
-            Connection con = JDBCConnectionManager.getConnection();
-            String sql = "UPDATE insurance.fnol\n"
-                    + "SET\n"
-                    + "emailAddress = ? ,\n"
-                    + "policyNumber = ? ,\n"
-                    + "description = ? ,\n"
-                    + "vehicleNumber = ? ,\n"
-                    + "claimNumber = ? ,\n"
-                    + "approvalInsuranceOfficerStatus = ? \n"
-                    + "WHERE claimNumber = ?;";
 
-            try {
-                PreparedStatement preparedStatement = con.prepareStatement(sql);
+        int row = 0;
+        Connection con = JDBCConnectionManager.getConnection();
+        String sql = "UPDATE insurance.fnol\n"
+                + "SET\n"
+                + "emailAddress = ? ,\n"
+                + "policyNumber = ? ,\n"
+                + "description = ? ,\n"
+                + "vehicleNumber = ? ,\n"
+                + "claimNumber = ? ,\n"
+                + "approvalInsuranceOfficerStatus = ? \n"
+                + "WHERE claimNumber = ?;";
 
-                preparedStatement.setString(1, fnol.getEmailAddress());
-                preparedStatement.setString(2, fnol.getPolicyNumber());
-                preparedStatement.setString(3, fnol.getDescription());
-                preparedStatement.setString(4, fnol.getVehicleNumber());
-                preparedStatement.setString(5, fnol.getClaimNumber());
-                preparedStatement.setString(6, "1");
-                preparedStatement.setString(7, fnol.getClaimNumber());
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
 
-                System.out.println("SQL = " + preparedStatement);
-                row = preparedStatement.executeUpdate();
+            preparedStatement.setString(1, fnol.getEmailAddress());
+            preparedStatement.setString(2, fnol.getPolicyNumber());
+            preparedStatement.setString(3, fnol.getDescription());
+            preparedStatement.setString(4, fnol.getVehicleNumber());
+            preparedStatement.setString(5, fnol.getClaimNumber());
+            preparedStatement.setString(6, "1");
+            preparedStatement.setString(7, fnol.getClaimNumber());
 
-            } catch (SQLException ex) {
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            System.out.println("SQL = " + preparedStatement);
+            row = preparedStatement.executeUpdate();
 
-                // Construct the error message with date and time
-                String errorMessage = timestamp.toString() + ": " + ex.getMessage();
+        } catch (SQLException ex) {
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-            }
+            // Construct the error message with date and time
+            String errorMessage = timestamp.toString() + ": " + ex.getMessage();
 
-            if (row == 1) {
-                result = true;
-            }
+        }
 
-        } else {
-            int row = 0;
-            Connection con = JDBCConnectionManager.getConnection();
-            String sql = "UPDATE insurance.fnol\n"
-                    + "SET\n"
-                    + "emailAddress = ? ,\n"
-                    + "policyNumber = ? ,\n"
-                    + "description = ? ,\n"
-                    + "vehicleNumber = ? ,\n"
-                    + "claimNumber = ? ,\n"
-                    + "approvalInsuranceOfficerStatus = ? \n"
-                    + "WHERE claimNumber = ?;";
-
-            try {
-                PreparedStatement preparedStatement = con.prepareStatement(sql);
-
-                preparedStatement.setString(1, fnol.getEmailAddress());
-                preparedStatement.setString(2, fnol.getPolicyNumber());
-                preparedStatement.setString(3, fnol.getDescription());
-                preparedStatement.setString(4, fnol.getVehicleNumber());
-                preparedStatement.setString(5, fnol.getClaimNumber());
-                preparedStatement.setString(6, "2");
-                preparedStatement.setString(7, fnol.getClaimNumber());
-
-                System.out.println("SQL = " + preparedStatement);
-                row = preparedStatement.executeUpdate();
-
-            } catch (SQLException ex) {
-                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
-                // Construct the error message with date and time
-                String errorMessage = timestamp.toString() + ": " + ex.getMessage();
-
-            }
-
-            if (row == 1) {
-                result = true;
-            }
-
+        if (row == 1) {
+            result = true;
         }
 
         return result;
 
+    }
+
+    public static boolean doRejectByUnderTaker(Fnol fnol) {
+        boolean result = false;
+        int row = 0;
+        Connection con = JDBCConnectionManager.getConnection();
+        String sql = "UPDATE insurance.fnol\n"
+                + "SET\n"
+                + "emailAddress = ? ,\n"
+                + "policyNumber = ? ,\n"
+                + "description = ? ,\n"
+                + "vehicleNumber = ? ,\n"
+                + "claimNumber = ? ,\n"
+                + "approvalUnderWriterStatus = ?,\n"
+                + "approvalInsuranceOfficerStatus = ? \n"
+                + "WHERE claimNumber = ?;";
+
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            preparedStatement.setString(1, fnol.getEmailAddress());
+            preparedStatement.setString(2, fnol.getPolicyNumber());
+            preparedStatement.setString(3, fnol.getDescription());
+            preparedStatement.setString(4, fnol.getVehicleNumber());
+            preparedStatement.setString(5, fnol.getClaimNumber());
+            preparedStatement.setString(6, "2");
+            preparedStatement.setString(7, "0");
+            preparedStatement.setString(8, fnol.getClaimNumber());
+
+            System.out.println("SQL = " + preparedStatement);
+            row = preparedStatement.executeUpdate();
+
+        } catch (SQLException ex) {
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+            // Construct the error message with date and time
+            String errorMessage = timestamp.toString() + ": " + ex.getMessage();
+
+        }
+
+        if (row == 1) {
+            result = true;
+        }
+        return result;
+    }
+
+    public static boolean doRejectByInsuranceOfficer(Fnol fnol) {
+        boolean result = false;
+        int row = 0;
+        Connection con = JDBCConnectionManager.getConnection();
+        String sql = "UPDATE insurance.fnol\n"
+                + "SET\n"
+                + "emailAddress = ? ,\n"
+                + "policyNumber = ? ,\n"
+                + "description = ? ,\n"
+                + "vehicleNumber = ? ,\n"
+                + "claimNumber = ? ,\n"
+                + "approvalInsuranceOfficerStatus = ? \n"
+                + "WHERE claimNumber = ?;";
+
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement(sql);
+
+            preparedStatement.setString(1, fnol.getEmailAddress());
+            preparedStatement.setString(2, fnol.getPolicyNumber());
+            preparedStatement.setString(3, fnol.getDescription());
+            preparedStatement.setString(4, fnol.getVehicleNumber());
+            preparedStatement.setString(5, fnol.getClaimNumber());
+            preparedStatement.setString(6, "2");
+            preparedStatement.setString(7, fnol.getClaimNumber());
+
+            System.out.println("SQL = " + preparedStatement);
+            row = preparedStatement.executeUpdate();
+
+        } catch (SQLException ex) {
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+            // Construct the error message with date and time
+            String errorMessage = timestamp.toString() + ": " + ex.getMessage();
+
+        }
+
+        if (row == 1) {
+            result = true;
+        }
+        return result;
+//
     }
 
 }
